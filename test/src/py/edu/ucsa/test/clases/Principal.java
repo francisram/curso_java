@@ -39,11 +39,39 @@ public class Principal {
 				line = bufReader.readLine();
 			}
 			mr.getRecursos();
+			
+
 			lineb = bufReaderboton.readLine();
 			while (lineb !=null ) {
 				System.out.println(lineb);
+				
+				String[] botones = lineb.split(",");
+				Boton b = new Boton();
+				b.setId(Integer.parseInt(botones[0]));
+				b.setAbreviatura(botones[1]);
+				b.setTexto(botones[2]);
+				Pagina pag = new Pagina();
+				pag.setNombre(botones[3]);
+				b.setPag(pag);
+				
 				lineb = bufReaderboton.readLine();
 				
+			}
+			
+			linep = bufReaderpag.readLine();
+			
+			while (linep != null) {
+				System.out.println(linep);
+				
+				String[] pags = linep.split(",");
+				
+				Pagina p = new Pagina();
+				p.setId(Integer.parseInt(pags[0]));
+				p.setAbreviatura(pags[1]);
+				p.setNombre(pags[2]);
+				boolean modal = (pags[3] == "N") ? false : true;
+				p.setModal(modal);
+				linep = bufReaderpag.readLine();
 			}
 			
 			
