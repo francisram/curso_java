@@ -3,6 +3,14 @@ package py.edu.ucsa.test.clases;
 public class Boton extends Recurso {
 	private String texto;
 	private Pagina pag;
+	
+	
+	
+	public Boton(int id, String abreviatura, String texto, Pagina pag) {
+		super(id, abreviatura);
+		this.texto = texto;
+		this.pag = pag;
+	}
 	public String getTexto() {
 		return texto;
 	}
@@ -15,5 +23,11 @@ public class Boton extends Recurso {
 	public void setPag(Pagina pag) {
 		this.pag = pag;
 	}
+	@Override
+	public String toString() {
+		return "Boton [texto=" + texto + ", pag=" + pag + ", toString()=" + super.toString() + "]";
+	}
+	
+	
 
 }

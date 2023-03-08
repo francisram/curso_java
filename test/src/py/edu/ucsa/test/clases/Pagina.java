@@ -16,6 +16,24 @@ public class Pagina extends Recurso {
 	public void setModal(boolean modal) {
 		this.modal = modal;
 	}
+	public Pagina(int id, String abreviatura, String nombre, boolean modal) {
+		super(id, abreviatura);
+		this.nombre = nombre;
+		this.modal = modal;
+	}
+	public Pagina() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Pagina [nombre=" + nombre + ", modal=" + modal + ", toString()=" + super.toString() + "]";
+	}
+	
+	
+	
+	
 
+	
 
 }

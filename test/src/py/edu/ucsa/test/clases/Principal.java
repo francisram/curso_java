@@ -1,12 +1,9 @@
 package py.edu.ucsa.test.clases;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
+
 
 public class Principal {
 
@@ -14,13 +11,19 @@ public class Principal {
 		FileReader reader;
 		FileReader readerb;
 		FileReader readerp;
-		try {
-			reader = new FileReader("C:\\tarea\\Menus.txt");
-			readerb = new FileReader("C:\\tarea\\Botones.txt");
-			readerp = new FileReader("C:\\\\tarea\\\\Paginas.txt");
-			BufferedReader bufReader = new BufferedReader(reader);
-			BufferedReader bufReaderboton = new BufferedReader(readerb);
-			BufferedReader bufReaderpag = new BufferedReader(readerp);
+		try (reader = new FileReader(args[0]);	
+				readerb = new FileReader(args[1]);
+				readerp = new FileReader(args[2]);
+				BufferedReader bufReader = new BufferedReader(reader);
+				BufferedReader bufReaderboton = new BufferedReader(readerb);
+				BufferedReader bufReaderpag = new BufferedReader(readerp)
+				){
+			/*
+			 * reader = new FileReader("C:\\clase_java\\Menus.txt"); readerb = new
+			 * FileReader("C:\\clase_java\\Botones.txt"); readerp = new
+			 * FileReader("C:\\\\clase_java\\\\Paginas.txt");
+			 */
+			
 			String line = null;
 			String lineb = null;
 			String linep = null;
@@ -28,32 +31,28 @@ public class Principal {
 			ManejadorRecursos mr = new ManejadorRecursos();
 			while (line != null) {
 				String[] menus = line.split(",");
-				Menu m = new Menu();
-				m.setId(Integer.parseInt(menus[0]));
-				m.setAbreviatura(menus[1]);
-				m.setDescripcion(menus[2]);
 				boolean p = (menus[3] == "s") ? true : false;
-				m.setPadre(p);
+				Menu m = new Menu(Integer.parseInt(menus[0]),menus[1],menus[2],p);
+				//System.out.println(m.toString());
 				mr.getRecursos().add(m);
-
+				
+								
 				line = bufReader.readLine();
 			}
-			mr.getRecursos();
 			
-
+			mr.getRecursos();
+					
+			
 			lineb = bufReaderboton.readLine();
 			while (lineb !=null ) {
-				System.out.println(lineb);
-				
+				//System.out.println(lineb);
 				String[] botones = lineb.split(",");
-				Boton b = new Boton();
-				b.setId(Integer.parseInt(botones[0]));
-				b.setAbreviatura(botones[1]);
-				b.setTexto(botones[2]);
 				Pagina pag = new Pagina();
 				pag.setNombre(botones[3]);
-				b.setPag(pag);
+				Boton b = new Boton(Integer.parseInt(botones[0]),botones[1],botones[2],pag);
+				//System.out.println(b.toString());
 				
+				mr.getRecursos().add(b);
 				lineb = bufReaderboton.readLine();
 				
 			}
@@ -61,21 +60,21 @@ public class Principal {
 			linep = bufReaderpag.readLine();
 			
 			while (linep != null) {
-				System.out.println(linep);
-				
+				//System.out.println(linep);
 				String[] pags = linep.split(",");
-				
-				Pagina p = new Pagina();
-				p.setId(Integer.parseInt(pags[0]));
-				p.setAbreviatura(pags[1]);
-				p.setNombre(pags[2]);
 				boolean modal = (pags[3] == "N") ? false : true;
-				p.setModal(modal);
+				Pagina p = new Pagina(Integer.parseInt(pags[0]), pags[1], pags[2],modal);
+				//System.out.println(p.toString());
+				
+				mr.getRecursos().add(p);
 				linep = bufReaderpag.readLine();
 			}
 			
+		/*	bufReader.close();
+			bufReaderboton.close();
+			bufReaderpag.close();*/
 			
-			bufReader.close();
+			ProcesarRecursos.mostrarRecursos(mr.getRecursos());
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
