@@ -15,5 +15,11 @@ public class Gerente extends Empleado {
 	public void setArea(String area) {
 		this.area = area;
 	}
+	@Override
+	public String toString() {
+		return "Gerente [sobreSueldo=" + sobreSueldo + ", area=" + area + ", toString()=" + super.toString() + "]";
+	}
 
+	
+	
 }
