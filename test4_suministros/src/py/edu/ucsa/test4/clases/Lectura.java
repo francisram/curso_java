@@ -5,8 +5,11 @@ import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+
+import py.edu.ucsa.test4.interfaces.Calculable;
 
 public class Lectura {
 	private int suministro;
@@ -30,47 +33,46 @@ public class Lectura {
 							LocalDate.parse(datos[0], DateTimeFormatter.ofPattern("dd/MM/yyyy")),
 							Integer.parseInt(datos[3]), datos[4]);
 
-					if (!yaExisteEnLaLista(l, clientes)) {										
+					if (!yaExisteEnLaLista(l, clientes)) {
 						switch (datos[4]) {
-						case "S": 
+						case "S":
 							TarifaSocial tf = new TarifaSocial(12);
 							tf.setSuministro(l.getSuministro());
 							tf.getLecturas().add(l);
 							clientes.add(tf);
 							break;
-						
-						case "C": 
+
+						case "C":
 							Comercio co = new Comercio(18);
 							co.setSuministro(0);
 							co.getLecturas().add(l);
 							clientes.add(co);
 							break;
-						
-						case "I": 
+
+						case "I":
 							Industrial i = new Industrial(25);
 							i.setSuministro(l.getSuministro());
 							i.getLecturas().add(l);
 							clientes.add(i);
 							break;
-						
-						case "R": 
+
+						case "R":
 							Residencial r = new Residencial();
 							r.setSuministro(l.getSuministro());
 							r.getLecturas().add(l);
 							clientes.add(r);
 							break;
-						default : 
-							//asdasdsa
+						default:
+							// asdasdsa
 						}
 					} else {
-						
+
 						for (Cliente c : clientes) {
-							if(c.equals(l)) {
+							if (c.equals(l)) {
 								c.getLecturas().add(l);
 							}
 						}
-					//	System.out.println("asdasd");
-						
+						// System.out.println("asdasd");
 
 					}
 
@@ -78,9 +80,13 @@ public class Lectura {
 				line = bufReader.readLine();
 			}
 
-			
+			List<Calculable> calculables = new ArrayList<>();
+			for (Cliente cliente : clientes) {
+				calculables.add((Calculable) cliente);
+			}
 
-			 
+			Facturador f = new Facturador();
+			f.procesarConsumos(calculables);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -89,8 +95,8 @@ public class Lectura {
 
 	private static boolean yaExisteEnLaLista(Lectura l, List<Cliente> clientes2) {
 		for (Cliente c : clientes2) {
-			if(l.equals(c)) {
-				return true;				
+			if (l.equals(c)) {
+				return true;
 			}
 		}
 		return false;

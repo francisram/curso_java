@@ -1,5 +1,7 @@
 package py.edu.ucsa.test4.clases;
 
+import py.edu.ucsa.test4.interfaces.Calculable;
+
 public class Residencial extends Cliente {
 
 	@Override

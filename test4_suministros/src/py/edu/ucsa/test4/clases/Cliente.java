@@ -63,6 +63,12 @@ public abstract class Cliente implements Calculable{
 		return PRECIO_KWH;
 	}
 	
+	@Override
+	public void calcularConsumo() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 
 }

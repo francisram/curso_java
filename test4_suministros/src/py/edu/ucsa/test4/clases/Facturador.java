@@ -7,9 +7,8 @@ import py.edu.ucsa.test4.interfaces.Calculable;
 public class Facturador {
 	public void procesarConsumos(List<Calculable> clientes) {
 		
-		for (Calculable c : clientes) {
-			System.out.println(c.toString());
-		}
+		System.out.println(clientes);
+	
 	}
 	public void generarFacturas(List<Cliente> clientes) {
 		

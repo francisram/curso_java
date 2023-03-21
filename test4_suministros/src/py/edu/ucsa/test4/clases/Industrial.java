@@ -1,6 +1,8 @@
 package py.edu.ucsa.test4.clases;
 
-public class Industrial extends Cliente {
+
+
+public class Industrial extends Cliente   {
 	private int porcentajeSubcidio;
 	
 	
