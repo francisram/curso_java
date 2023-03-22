@@ -1,6 +1,6 @@
 package py.edu.ucsa.test4.clases;
 
-import py.edu.ucsa.test4.interfaces.Calculable;
+
 
 public class TarifaSocial extends Cliente {
 	private int porcentajeTolerancia;
@@ -15,7 +15,17 @@ public class TarifaSocial extends Cliente {
 
 	@Override
 	public void calcularConsumo() {
-		// TODO Auto-generated method stub
+		for (Lectura l : super.getLecturas()) {
+			int r = 0;
+			int tolerancia = (300 * (porcentajeTolerancia/100));
+			int limiteConsumo = 300 + tolerancia;
+			if(l.getConsumoKWH()>limiteConsumo) {
+				r = l.getConsumoKWH() * super.getPrecioKwh();
+			}else {
+				r = (l.getConsumoKWH() * super.getPrecioKwh())/2;
+			}
+			super.setMontoConsumo(r);
+		}
 		
 	}
 

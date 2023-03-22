@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -72,24 +71,17 @@ public class Lectura {
 								c.getLecturas().add(l);
 							}
 						}
-						// System.out.println("asdasd");
-
 					}
 
 				}
 				line = bufReader.readLine();
 			}
 
-			
 			List<Calculable> calculables = new ArrayList<>();
 			for (Cliente client : clientes) {
 				calculables.add((Calculable) client);
 			}
 
-			/*
-			 * for (Calculable calculable : calculables) { System.out.println(calculable); }
-			 */
-			
 			Facturador f = new Facturador();
 			f.procesarConsumos(calculables);
 

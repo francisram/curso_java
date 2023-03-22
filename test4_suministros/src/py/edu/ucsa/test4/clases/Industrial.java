@@ -20,7 +20,18 @@ public class Industrial extends Cliente   {
 
 	@Override
 	public void calcularConsumo() {
-		// TODO Auto-generated method stub
+		for (Lectura l : super.getLecturas()) {
+			int r = 0;
+			int subsidio = (l.getConsumoKWH() *  (porcentajeSubcidio/100));
+			int nosub =(l.getConsumoKWH() *  (5/100));
+			
+			if(l.getConsumoKWH()>1000) {
+				r = (l.getConsumoKWH() - subsidio )* super.getPrecioKwh();
+			}else {
+				r = (l.getConsumoKWH() -nosub) * super.getPrecioKwh();
+			}
+			super.setMontoConsumo(r);
+		}
 		
 	}
 

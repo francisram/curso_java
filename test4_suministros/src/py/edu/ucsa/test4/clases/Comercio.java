@@ -18,7 +18,11 @@ public class Comercio extends Cliente  {
 
 	@Override
 	public void calcularConsumo() {
-		// TODO Auto-generated method stub
+		for (Lectura l : super.getLecturas()) {
+			int porcentaje = ((super.getPrecioKwh() * l.getConsumoKWH())* (porcentajeComercio/100));
+			int consumo = super.getPrecioKwh() * l.getConsumoKWH()+porcentaje;
+			super.setMontoConsumo(consumo);
+		}
 		
 	}
 
