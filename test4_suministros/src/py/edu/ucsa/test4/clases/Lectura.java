@@ -80,11 +80,16 @@ public class Lectura {
 				line = bufReader.readLine();
 			}
 
+			
 			List<Calculable> calculables = new ArrayList<>();
-			for (Cliente cliente : clientes) {
-				calculables.add((Calculable) cliente);
+			for (Cliente client : clientes) {
+				calculables.add((Calculable) client);
 			}
 
+			/*
+			 * for (Calculable calculable : calculables) { System.out.println(calculable); }
+			 */
+			
 			Facturador f = new Facturador();
 			f.procesarConsumos(calculables);
 
