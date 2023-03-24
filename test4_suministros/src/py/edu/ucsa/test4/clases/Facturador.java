@@ -45,19 +45,6 @@ public class Facturador {
 
 	public void generarFacturas(List<Cliente> clients) {
 
-			/*
-			Path path = Paths.get("C:\\clase_java\\facturas\\" + cliente.getSuministro() + ".txt");
-			try() {
-				Files.deleteIfExists(path);
-				Files.createFile(path);
-
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		*/
 		
 		  for (Cliente cliente : clients) { 
 			  try  { 
