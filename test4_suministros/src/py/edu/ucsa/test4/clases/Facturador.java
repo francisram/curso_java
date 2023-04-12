@@ -46,12 +46,13 @@ public class Facturador {
 	public void generarFacturas(List<Cliente> clients) {
 
 		
-		  for (Cliente cliente : clients) { 
+		  for (Cliente cliente : clients) {
+			  System.out.println(cliente);
 			  try  { 
 			  for (Lectura l :  cliente.getLecturas()) { 
 				  FileWriter output = new FileWriter("C:\\clase_java\\facturas\\" +l.getCategoria()+"_"+ cliente.getSuministro() + ".txt");
 				  BufferedWriter bufOutput = new BufferedWriter(output);
-				  bufOutput.write(l.toString()); 
+				  bufOutput.write(cliente.toString()); 
 				  bufOutput.close();
 				  output.close();
 				  } 
